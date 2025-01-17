@@ -21,7 +21,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 25
-
   app:
     build:
       context: .
@@ -34,7 +33,6 @@ services:
       JWT_SECRET_KEY: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
       SECURITY_JWT_EXPIRATION_TIME: 300050
       api-countries: ${API-COUNTRY}
-
     ports:
       - 8081:8081
     depends_on:

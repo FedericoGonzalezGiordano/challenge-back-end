@@ -1,4 +1,10 @@
-FROM eclipse-temurin:17-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:17-slim AS build
+RUN apt-get update && apt-get install -y maven && apt-get clean
+WORKDIR /app
+COPY . /app
+RUN mvn clean package -DskipTests
+FROM gcr.io/distroless/java17
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
