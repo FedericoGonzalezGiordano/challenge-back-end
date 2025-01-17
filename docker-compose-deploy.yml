@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: challenge-back-end
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://ep-raspy-lake-a8lo6qzj.eastus2.azure.neon.tech/challange-database?sslmode=require
+      SPRING_DATASOURCE_USERNAME: challange-database_owner
+      SPRING_DATASOURCE_PASSWORD: 3n2HQIDqiJZe
+    ports:
+      - "8081:8081"
