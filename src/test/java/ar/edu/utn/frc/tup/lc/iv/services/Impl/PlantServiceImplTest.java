@@ -198,7 +198,7 @@ class PlantServiceImplTest {
         when(plantRepository.findById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
-            plantService.updatePlant(new GetPlantDto(1L, "Cosquin", 0, 0, 0, 0, "Argentina", true));
+            plantService.updatePlant(new GetPlantDto(1L, "Cosquin", 0, 0, 0, 0, "Argentina","Asd",  true));
         });
 
         assertEquals("Planta no encontrada", exception.getMessage());

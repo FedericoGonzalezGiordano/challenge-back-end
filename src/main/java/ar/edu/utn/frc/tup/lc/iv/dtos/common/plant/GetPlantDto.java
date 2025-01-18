@@ -14,5 +14,6 @@ public class GetPlantDto {
     private Integer redAlerts;
     private Integer sensorsDisabled;
     private String country;
+    private String flag;
     public boolean status;
 }

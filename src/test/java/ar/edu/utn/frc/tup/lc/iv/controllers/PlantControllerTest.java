@@ -72,7 +72,7 @@ class PlantControllerTest {
 
     @Test
     void updatePlant() throws Exception {
-        GetPlantDto updatePlantDto = new GetPlantDto(1L, "Updated Plant", 20, 3, 2, 1, "Argentina", true);
+        GetPlantDto updatePlantDto = new GetPlantDto(1L, "Updated Plant", 20, 3, 2, 1, "Argentina","asd", true);
         PlantDto expectedResponse = new PlantDto("Updated Plant", true);
 
         when(plantService.updatePlant(any(GetPlantDto.class))).thenReturn(expectedResponse);
@@ -83,4 +83,6 @@ class PlantControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(expectedResponse)));
     }
+
+
 }
