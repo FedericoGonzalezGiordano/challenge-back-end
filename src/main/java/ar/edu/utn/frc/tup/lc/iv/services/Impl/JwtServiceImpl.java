@@ -78,11 +78,7 @@ public class JwtServiceImpl implements JwtService {
         Date issuedAt = new Date(currentTime);
         Date expirationDate = new Date(currentTime + expiration);
 
-        System.out.println("Building token:");
-        System.out.println("Current time (ms): " + currentTime);
-        System.out.println("IssuedAt: " + issuedAt);
-        System.out.println("Will expire at: " + expirationDate);
-        System.out.println("Expiration time (ms): " + expiration);
+
 
         String token = Jwts.builder()
                 .id(userEntity.getId().toString())
@@ -93,17 +89,13 @@ public class JwtServiceImpl implements JwtService {
                 .signWith(getSignInKey())
                 .compact();
 
-        // Verificación del token generado
         Claims claims = Jwts.parser()
                 .verifyWith(getSignInKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
 
-        System.out.println("\nVerificación del token creado:");
-        System.out.println("IssuedAt verificado: " + claims.getIssuedAt());
-        System.out.println("Expiration verificado: " + claims.getExpiration());
-        System.out.println("Tiempo hasta expiración (ms): " + (claims.getExpiration().getTime() - claims.getIssuedAt().getTime()));
+
 
         return token;
     }
